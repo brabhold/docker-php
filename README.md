@@ -8,7 +8,6 @@ See repository on [Docker Hub](https://hub.docker.com/repository/docker/brabhold
 - [ `7.4-cli` (*cli/Dockerfile*)](https://github.com/brabhold/docker-php/blob/master/cli/Dockerfile)
 - [ `7.4-fpm` (*fpm/Dockerfile*)](https://github.com/brabhold/docker-php/blob/master/fpm/Dockerfile)
 
-
 # How to use this image
 
 Same use as the [official PHP docker image](https://hub.docker.com/_/php/) but replace `php` image by `brabholdsa/php`
