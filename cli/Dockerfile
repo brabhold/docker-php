@@ -1,4 +1,4 @@
-FROM yannickvh/php:7.4-cli
+FROM yannickvh/php:5.6-cli
 LABEL maintainer="Yannick Vanhaeren"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -21,7 +21,7 @@ RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends $PHP_BUILD_DEPS; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
     docker-php-ext-install -j$(nproc) ldap; \
-    pecl install apcu; \
+    pecl install apcu-4.0.11; \
     docker-php-ext-enable apcu; \
     pecl clear-cache; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS
@@ -34,7 +34,7 @@ RUN set -eux; \
     "; \
     apt-get update && apt-get install -y --no-install-recommends $MSSQL_BUILD_DEPS; \
     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-    curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
+    curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
     apt-get update && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 libgssapi-krb5-2; \
     pecl install sqlsrv pdo_sqlsrv; \
     docker-php-ext-enable sqlsrv pdo_sqlsrv; \
