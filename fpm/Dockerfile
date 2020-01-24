@@ -10,7 +10,7 @@ RUN set -eux; \
         vim \
         openssh-client \
         libsybdb5 \
-        freetds-bin; \
+        freetds-bin \
         freetds-common; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
