@@ -4,9 +4,9 @@ See repository on [Docker Hub](https://hub.docker.com/repository/docker/brabhold
 
 # Supported tags and respective `Dockerfile` links
 
-- [ `5.6-apache` (*apache/Dockerfile*)](https://github.com/brabhold/docker-php/blob/master/apache/Dockerfile)
-- [ `5.6-cli` (*cli/Dockerfile*)](https://github.com/brabhold/docker-php/blob/master/cli/Dockerfile)
-- [ `5.6-fpm` (*fpm/Dockerfile*)](https://github.com/brabhold/docker-php/blob/master/fpm/Dockerfile)
+- [ `5.6-apache` (*apache/Dockerfile*)](https://github.com/brabhold/docker-php/blob/5.6/apache/Dockerfile)
+- [ `5.6-cli` (*cli/Dockerfile*)](https://github.com/brabhold/docker-php/blob/5.6/cli/Dockerfile)
+- [ `5.6-fpm` (*fpm/Dockerfile*)](https://github.com/brabhold/docker-php/blob/5.6/fpm/Dockerfile)
 
 # How to use this image
 
@@ -16,7 +16,7 @@ Same use as the [official PHP docker image](https://hub.docker.com/_/php/) but r
 
 ## Issues
 
-If you have any problems with or questions about this image, please contact me through a [GitHub issue](https://github.com/yvh/docker-php-dev/issues).
+If you have any problems with or questions about this image, please contact me through a [GitHub issue](https://github.com/brabhold/docker-php/issues).
 
 ## Contributing
 

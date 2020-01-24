@@ -8,7 +8,10 @@ RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
         git \
         vim \
-        openssh-client; \
+        openssh-client \
+        libsybdb5 \
+        freetds-bin; \
+        freetds-common; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
 
@@ -17,29 +20,18 @@ RUN set -eux; \
     PHP_BUILD_DEPS=" \
         libldap2-dev \
         libsasl2-dev \
+        freetds-dev \
     "; \
     apt-get update && apt-get install -y --no-install-recommends $PHP_BUILD_DEPS; \
+    ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so; \
+    ln -s /usr/lib/x86_64-linux-gnu/libsybdb.a /usr/lib/libsybdb.a; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
-    docker-php-ext-install -j$(nproc) ldap; \
+    docker-php-ext-configure mssql; \
+    docker-php-ext-install -j$(nproc) ldap mssql; \
     pecl install apcu-4.0.11; \
     docker-php-ext-enable apcu; \
     pecl clear-cache; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS
-
-# Add MSSQL drivers
-RUN set -eux; \
-    MSSQL_BUILD_DEPS=" \
-        gnupg2 \
-        unixodbc-dev \
-    "; \
-    apt-get update && apt-get install -y --no-install-recommends $MSSQL_BUILD_DEPS; \
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-    curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-    apt-get update && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 libgssapi-krb5-2; \
-    pecl install sqlsrv pdo_sqlsrv; \
-    docker-php-ext-enable sqlsrv pdo_sqlsrv; \
-    pecl clear-cache; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $MSSQL_BUILD_DEPS
 
 RUN set -eux; \
     cd /usr/local/etc/php; \
