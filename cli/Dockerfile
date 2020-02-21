@@ -6,11 +6,13 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install dependencies
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
+        sendmail \
         libsybdb5 \
         freetds-bin \
         freetds-common; \
     apt-get clean; \
-    rm -r /var/lib/apt/lists/*
+    rm -r /var/lib/apt/lists/* ;\
+    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/sbin/sendmail -t -i -S mailhost.transmeat.be:1025|" /usr/local/etc/php/php.ini
 
 # Add php extensions
 RUN set -eux; \
@@ -25,4 +27,6 @@ RUN set -eux; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
     docker-php-ext-configure mssql; \
     docker-php-ext-install -j$(nproc) ldap mssql; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
+    apt-get clean; \
+    rm -r /var/lib/apt/lists/*
