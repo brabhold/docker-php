@@ -3,6 +3,13 @@ LABEL maintainer="Yannick Vanhaeren"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN set -eux; \
+    apt-get update && apt-get install -y --no-install-recommends \
+        sendmail; \
+    apt-get clean; \
+    rm -r /var/lib/apt/lists/* ;\
+    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/sbin/sendmail -t -i -S mailhost.transmeat.be:1025|" /usr/local/etc/php/php.ini
+
 # Add php extensions
 RUN set -eux; \
     PHP_BUILD_DEPS=" \
@@ -12,7 +19,9 @@ RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends $PHP_BUILD_DEPS; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
     docker-php-ext-install -j$(nproc) ldap; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
+    apt-get clean; \
+    rm -r /var/lib/apt/lists/*
 
 # Add MSSQL drivers
 RUN set -eux; \
@@ -27,4 +36,6 @@ RUN set -eux; \
     pecl install sqlsrv-5.7.1preview pdo_sqlsrv-5.7.1preview; \
     docker-php-ext-enable sqlsrv pdo_sqlsrv; \
     pecl clear-cache; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $MSSQL_BUILD_DEPS
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $MSSQL_BUILD_DEPS; \
+    apt-get clean; \
+    rm -r /var/lib/apt/lists/*
