@@ -1,6 +1,6 @@
 # Custom build of PHP for production.
 
-See repository on [Docker Hub](https://hub.docker.com/repository/docker/brabholdsa/php)
+See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 
 # Supported tags and respective `Dockerfile` links
 
