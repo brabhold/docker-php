@@ -5,10 +5,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
-        sendmail; \
+        msmtp; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/* ;\
-    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/sbin/sendmail -t -i -S mailhost.transmeat.be:1025|" /usr/local/etc/php/php.ini
+    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" /usr/local/etc/php/php.ini
+
+COPY msmtprc /etc/msmtprc
 
 # Add php extensions
 RUN set -eux; \
