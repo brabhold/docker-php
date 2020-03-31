@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install dependencies
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
-        msmtp; \
+        msmtp \
         libsybdb5 \
         freetds-bin \
         freetds-common; \
