@@ -7,6 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
         msmtp \
+        mariadb-client \
         libsybdb5 \
         freetds-bin \
         freetds-common; \
