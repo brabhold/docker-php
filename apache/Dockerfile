@@ -5,7 +5,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
-        msmtp; \
+        msmtp \
+        mariadb-client; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/* ;\
     sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" /usr/local/etc/php/php.ini
