@@ -6,6 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install dependencies
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
+        libssh2-1 \
         msmtp \
         mariadb-client \
         libsybdb5 \
@@ -20,6 +21,7 @@ COPY msmtprc /etc/msmtprc
 # Add php extensions
 RUN set -eux; \
     PHP_BUILD_DEPS=" \
+        libssh2-1-dev \
         libldap2-dev \
         libsasl2-dev \
         freetds-dev \
@@ -30,6 +32,9 @@ RUN set -eux; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
     docker-php-ext-configure mssql; \
     docker-php-ext-install -j$(nproc) ldap mssql; \
+    pecl install ssh2; \
+    pecl clear-cache; \
+    docker-php-ext-enable ssh2; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
