@@ -38,3 +38,5 @@ RUN set -eux; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
+
+ENV COMPOSER_VERSION --1
