@@ -41,4 +41,4 @@ Install the last version of composer
 
 `COMPOSER_VERSION`
 
-Version of composer (<=5.6: `--1`, >=7.0: `--2`)
+Version of composer (<=5.6: `--1`, 7.0<=: `--2`)
