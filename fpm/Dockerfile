@@ -7,6 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
         libssh2-1 \
+        pwgen \
         msmtp \
         mariadb-client \
         libsybdb5 \
