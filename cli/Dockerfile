@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
+        pwgen \
         msmtp \
         mariadb-client; \
     apt-get clean; \
