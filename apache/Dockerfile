@@ -9,8 +9,11 @@ RUN set -eux; \
         msmtp \
         mariadb-client; \
     apt-get clean; \
-    rm -r /var/lib/apt/lists/* ;\
-    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" /usr/local/etc/php/php.ini
+    rm -r /var/lib/apt/lists/*; \
+    cd /usr/local/etc/php; \
+    sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini; \
+    sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini; \
+    sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" php.ini
 
 COPY msmtprc /etc/msmtprc
 
