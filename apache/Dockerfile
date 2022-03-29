@@ -24,11 +24,10 @@ RUN set -eux; \
         libssh2-1-dev \
         libldap2-dev \
         libsasl2-dev \
-        libxml2-dev \
     "; \
     apt-get update && apt-get install -y --no-install-recommends $PHP_BUILD_DEPS; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
-    docker-php-ext-install -j$(nproc) ldap soap; \
+    docker-php-ext-install -j$(nproc) ldap; \
     pecl install ssh2-1.3.1; \
     pecl clear-cache; \
     docker-php-ext-enable ssh2; \
