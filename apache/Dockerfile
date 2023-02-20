@@ -5,6 +5,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        less \
+        vim \
+        unzip \
+        openssh-client \
         libssh2-1 \
         pwgen \
         msmtp \
