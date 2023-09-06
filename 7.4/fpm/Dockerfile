@@ -1,6 +1,8 @@
 FROM yannickvh/php-prod:7.4-fpm
 LABEL maintainer="Yannick Vanhaeren"
 
+ENV TZ="Europe/Brussels"
+
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -eux; \
