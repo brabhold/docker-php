@@ -16,7 +16,7 @@ RUN set -eux; \
     cd /usr/local/etc/php; \
     sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini; \
     sed -i -e "s|memory_limit = 128M|memory_limit = 2048M|" php.ini; \
-    sed -i -e "s|;opcache.memory_consumption=128|opcache.memory_consumption=256|" php.ini; \
+    sed -i -e "s|;opcache.enable=1|opcache.enable=0|" php.ini; \
     sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini; \
     sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" php.ini
 
