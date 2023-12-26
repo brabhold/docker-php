@@ -61,3 +61,12 @@ RUN set -eux; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $MSSQL_BUILD_DEPS; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
+
+# Add wkhtml2pdf
+RUN set -eux; \
+    apt-get update; \
+    curl -L https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb -o wkhtmltox_0.12.6-1.buster_amd64.deb; \
+    apt install -y ./wkhtmltox_0.12.6-1.buster_amd64.deb; \
+    rm wkhtmltox_0.12.6-1.buster_amd64.deb; \
+    apt-get clean; \
+    rm -r /var/lib/apt/lists/*
