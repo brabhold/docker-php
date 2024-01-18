@@ -42,9 +42,9 @@ RUN set -e; \
 # Add wkhtml2pdf
 RUN set -e; \
     apt-get update; \
-    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb" -o wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
-    apt install -y ./wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
-    rm wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
+    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-3.bullseye_amd64.deb" -o wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
+    apt install -y ./wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
+    rm wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
     
