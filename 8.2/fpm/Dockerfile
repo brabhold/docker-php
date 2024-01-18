@@ -38,7 +38,7 @@ RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends $PHP_BUILD_DEPS; \
     docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu --with-ldap-sasl; \
     docker-php-ext-install -j$(nproc) ldap; \
-    pecl install ssh2-1.3.1; \
+    pecl install ssh2; \
     pecl clear-cache; \
     docker-php-ext-enable ssh2; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
@@ -65,8 +65,9 @@ RUN set -eux; \
 # Add wkhtml2pdf
 RUN set -eux; \
     apt-get update; \
-    curl -L https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb -o wkhtmltox_0.12.6-1.buster_amd64.deb; \
-    apt install -y ./wkhtmltox_0.12.6-1.buster_amd64.deb; \
-    rm wkhtmltox_0.12.6-1.buster_amd64.deb; \
+    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_amd64.deb" -o wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
+    apt install -y ./wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
+    rm wkhtmltox_0.12.6.1-2.bullseye_amd64.deb; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
+    
