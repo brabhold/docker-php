@@ -1,4 +1,7 @@
-FROM yannickvh/php-prod:8.1-cli
+ARG PHP_BASE_IMAGE=
+
+FROM $PHP_BASE_IMAGE
+
 LABEL maintainer="Yannick Vanhaeren"
 
 ENV TZ="Europe/Brussels"
@@ -16,13 +19,12 @@ RUN set -e; \
     cd /usr/local/etc/php; \
     sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini; \
     sed -i -e "s|memory_limit = 128M|memory_limit = 1024M|" php.ini; \
-        sed -i -e "s|;max_input_vars = 1000|max_input_vars = 3000|" php.ini; \
+    sed -i -e "s|;max_input_vars = 1000|max_input_vars = 3000|" php.ini; \
     sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini; \
     sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" php.ini
 
-COPY msmtprc /etc/msmtprc
+COPY ../../msmtprc /etc/msmtprc
 
-# Add php extensions
 RUN set -e; \
     PHP_BUILD_DEPS=" \
         libssh2-1-dev \
@@ -39,11 +41,11 @@ RUN set -e; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
 
-# Add wkhtml2pdf
 RUN set -e; \
     apt-get update; \
-    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb" -o wkhtmltox_0.12.6-1.buster_amd64.deb; \
-    apt install -y ./wkhtmltox_0.12.6-1.buster_amd64.deb; \
-    rm wkhtmltox_0.12.6-1.buster_amd64.deb; \
+    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bullseye_amd64.deb" -o wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
+    apt install -y ./wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
+    rm wkhtmltox_0.12.6.1-3.bullseye_amd64.deb; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
+    
