@@ -8,10 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN set -eux; \
     apt-get update && apt-get install -y --no-install-recommends \
         libssh2-1 \
-unixodbc \
-        pwgen \
-        msmtp \
-        mariadb-client; \
+        msmtp; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*; \
     cd /usr/local/etc/php; \
@@ -37,23 +34,6 @@ RUN set -eux; \
     pecl clear-cache; \
     docker-php-ext-enable ssh2; \
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $PHP_BUILD_DEPS; \
-    apt-get clean; \
-    rm -r /var/lib/apt/lists/*
-
-# Add MSSQL drivers
-RUN set -eux; \
-    MSSQL_BUILD_DEPS=" \
-        gnupg2 \
-        unixodbc-dev \
-    "; \
-    apt-get update && apt-get install -y --no-install-recommends $MSSQL_BUILD_DEPS; \
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -; \
-    curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list; \
-    apt-get update && ACCEPT_EULA=Y apt-get install -y --no-install-recommends msodbcsql17 libgssapi-krb5-2; \
-    pecl install sqlsrv-5.9.0 pdo_sqlsrv-5.9.0; \
-    docker-php-ext-enable sqlsrv pdo_sqlsrv; \
-    pecl clear-cache; \
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $MSSQL_BUILD_DEPS; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
 
