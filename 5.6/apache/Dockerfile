@@ -4,7 +4,7 @@ LABEL maintainer="Yannick Vanhaeren"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN set -eux; \
+RUN set -e; \
     apt-get update && apt-get install -y --no-install-recommends \
         libssh2-1 \
         pwgen \
@@ -23,7 +23,7 @@ RUN set -eux; \
 COPY msmtprc /etc/msmtprc
 
 # Add php extensions
-RUN set -eux; \
+RUN set -e; \
     PHP_BUILD_DEPS=" \
         libssh2-1-dev \
         libldap2-dev \

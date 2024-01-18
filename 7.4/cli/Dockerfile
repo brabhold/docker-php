@@ -5,7 +5,7 @@ ENV TZ="Europe/Brussels"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN set -eux; \
+RUN set -e; \
     apt-get update && apt-get install -y --no-install-recommends \
         libssh2-1 \
         msmtp; \
@@ -21,7 +21,7 @@ sed -i -e "s|;max_input_vars = 1000|max_input_vars = 3000|" php.ini; \
 COPY msmtprc /etc/msmtprc
 
 # Add php extensions
-RUN set -eux; \
+RUN set -e; \
     PHP_BUILD_DEPS=" \
         libssh2-1-dev \
         libldap2-dev \
@@ -38,7 +38,7 @@ RUN set -eux; \
     rm -r /var/lib/apt/lists/*
 
 # Add wkhtml2pdf
-RUN set -eux; \
+RUN set -e; \
     apt-get update; \
     curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.buster_amd64.deb" -o wkhtmltox_0.12.6-1.buster_amd64.deb; \
     apt install -y ./wkhtmltox_0.12.6-1.buster_amd64.deb; \
