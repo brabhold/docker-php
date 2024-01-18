@@ -10,7 +10,9 @@ RUN set -e; \
         libssh2-1 \
         msmtp; \
     apt-get clean; \
-    rm -r /var/lib/apt/lists/*; \
+    rm -r /var/lib/apt/lists/*
+
+RUN set -e; \
     cd /usr/local/etc/php; \
     sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini; \
     sed -i -e "s|memory_limit = 128M|memory_limit = 1024M|" php.ini; \
