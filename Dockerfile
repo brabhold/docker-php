@@ -7,6 +7,7 @@ LABEL maintainer="Yannick Vanhaeren"
 ENV TZ="Europe/Brussels"
 
 ARG DEBIAN_FRONTEND=noninteractive
+ARG WKHTMLTOPDF_URL
 
 RUN set -e; \
     apt-get update && apt-get install -y --no-install-recommends \
@@ -43,9 +44,10 @@ RUN set -e; \
 
 RUN set -e; \
     apt-get update; \
-    curl -L "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bookworm_amd64.deb" -o wkhtmltox_0.12.6.1-3.bookworm_amd64.deb; \
-    apt install -y ./wkhtmltox_0.12.6.1-3.bookworm_amd64.deb; \
-    rm wkhtmltox_0.12.6.1-3.bookworm_amd64.deb; \
+    WKHTMLTOPDF_TEMP_DEB="$(mktemp).deb"; \
+    curl -L "${WKHTMLTOPDF_URL}" -o ${WKHTMLTOPDF_TEMP_DEB}; \
+    apt install -y ${WKHTMLTOPDF_TEMP_DEB}; \
+    rm ${WKHTMLTOPDF_TEMP_DEB}; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
     
