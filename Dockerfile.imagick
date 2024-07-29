@@ -5,6 +5,7 @@ FROM $PHP_BASE_IMAGE
 RUN set -e; \
     apt-get update && apt-get install -y --no-install-recommends \
         imagemagick libmagickwand-dev; \
+        ghostscript; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*; \
     pecl install imagick; \
