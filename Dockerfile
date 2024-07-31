@@ -1,4 +1,4 @@
-ARG PHP_BASE_IMAGE=
+ARG PHP_BASE_IMAGE=yannickvh/php-prod:7.4-apache
 
 FROM $PHP_BASE_IMAGE
 
@@ -19,7 +19,7 @@ RUN set -e; \
 RUN set -e; \
     cd /usr/local/etc/php; \
     sed -i -e "s|post_max_size = 8M|post_max_size = 55M|" php.ini; \
-    sed -i -e "s|memory_limit = 128M|memory_limit = 1024M|" php.ini; \
+    sed -i -e "s|memory_limit = 128M|memory_limit = 2048M|" php.ini; \
     sed -i -e "s|;max_input_vars = 1000|max_input_vars = 3000|" php.ini; \
     sed -i -e "s|upload_max_filesize = 2M|upload_max_filesize = 50M|" php.ini; \
     sed -i -e "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" php.ini
@@ -42,8 +42,14 @@ RUN set -e; \
     apt-get clean; \
     rm -r /var/lib/apt/lists/*
 
+
+
 RUN set -e; \
+    echo "Updating package list..."; \
     apt-get update; \
+    echo "Downloading WKHTMLTOPDF..."; \
+    curl -L "${WKHTMLTOPDF_URL}" -o "${WKHTMLTOPDF_TEMP_DEB}"; \
+    echo "${WKHTMLTOPDF_URL}"; \
     WKHTMLTOPDF_TEMP_DEB="$(mktemp).deb"; \
     curl -L "${WKHTMLTOPDF_URL}" -o ${WKHTMLTOPDF_TEMP_DEB}; \
     apt install -y ${WKHTMLTOPDF_TEMP_DEB}; \
