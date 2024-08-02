@@ -1,4 +1,4 @@
-ARG PHP_BASE_IMAGE=yannickvh/php-prod:7.4-apache
+ARG PHP_BASE_IMAGE=
 
 FROM $PHP_BASE_IMAGE
 
@@ -43,13 +43,9 @@ RUN set -e; \
     rm -r /var/lib/apt/lists/*
 
 
-
 RUN set -e; \
-    echo "Updating package list..."; \
     apt-get update; \
-    echo "Downloading WKHTMLTOPDF..."; \
     curl -L "${WKHTMLTOPDF_URL}" -o "${WKHTMLTOPDF_TEMP_DEB}"; \
-    echo "${WKHTMLTOPDF_URL}"; \
     WKHTMLTOPDF_TEMP_DEB="$(mktemp).deb"; \
     curl -L "${WKHTMLTOPDF_URL}" -o ${WKHTMLTOPDF_TEMP_DEB}; \
     apt install -y ${WKHTMLTOPDF_TEMP_DEB}; \

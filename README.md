@@ -4,6 +4,8 @@ Docker repository `brabholdsa/php`
 
 See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 
+# !!! To build the images, please use the build.sh on Github project [docker-php-build](https://github.com/brabhold/docker-php-build)
+
 # Supported tags
 
 - `8.3-apache`, `8.3-apache-imagick`, `8.3-cli`, `8.3-cli-imagick`

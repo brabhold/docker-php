@@ -1,4 +1,4 @@
-ARG PHP_BASE_IMAGE=yannickvh/php-prod:7.4-apache
+ARG PHP_BASE_IMAGE=
 
 FROM $PHP_BASE_IMAGE
 
