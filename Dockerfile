@@ -45,7 +45,6 @@ RUN set -e; \
 
 RUN set -e; \
     apt-get update; \
-    curl -L "${WKHTMLTOPDF_URL}" -o "${WKHTMLTOPDF_TEMP_DEB}"; \
     WKHTMLTOPDF_TEMP_DEB="$(mktemp).deb"; \
     curl -L "${WKHTMLTOPDF_URL}" -o ${WKHTMLTOPDF_TEMP_DEB}; \
     apt install -y ${WKHTMLTOPDF_TEMP_DEB}; \
