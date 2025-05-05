@@ -1,4 +1,9 @@
-[![7.4](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml) [![8.0](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml) [![8.1](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml) [![8.2](https://github.com/brabhold/docker-php/actions/workflows/8.2.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.2.yaml) [![8.3](https://github.com/brabhold/docker-php/actions/workflows/8.3.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.3.yaml) [![8.4](https://github.com/brabhold/docker-php/actions/workflows/8.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.4.yaml)
+[![7.4](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml)
+[![8.0](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml)
+[![8.1](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml)
+[![8.2](https://github.com/brabhold/docker-php/actions/workflows/8.2.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.2.yaml)
+[![8.3](https://github.com/brabhold/docker-php/actions/workflows/8.3.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.3.yaml)
+[![8.4](https://github.com/brabhold/docker-php/actions/workflows/8.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.4.yaml)
 
 # Custom build of PHP for production.
 
