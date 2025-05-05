@@ -17,20 +17,40 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and push php 8.0
+        name: Build and push brabholdsa/php:8.0-cli
+        uses: docker/build-push-action@v6
+        with:
+          build-args: |
+            PHP_VERSION=8.0
+          target: cli
+          push: true
+          tags: brabholdsa/php:8.0-cli
+      -
+        name: Build and push brabholdsa/php:8.0-cli-imagick
+        uses: docker/build-push-action@v6
+        with:
+          build-args: |
+            PHP_BASE_IMAGE=brabholdsa/php:8.0-cli
+            PHP_VERSION=8.0
+          file: Dockerfile.imagick
+          push: true
+          tags: brabholdsa/php:8.0-cli-imagick
+      -
+        name: Build and push brabholdsa/php:8.0-apache
         uses: docker/build-push-action@v6
         with:
           build-args:
             PHP_VERSION=8.0
+          target: apache
           push: true
-          tags: brabholdsa/php:8.0
+          tags: brabholdsa/php:8.0-apache
       -
-        name: Build and push php 8.0-imagick
+        name: Build and push brabholdsa/php:8.0-apache-imagick
         uses: docker/build-push-action@v6
         with:
           build-args: |
-            PHP_BASE_IMAGE=brabholdsa/php:8.0
+            PHP_BASE_IMAGE=brabholdsa/php:8.0-apache
             PHP_VERSION=8.0
           file: Dockerfile.imagick
           push: true
-          tags: brabholdsa/php:8.0-imagick
+          tags: brabholdsa/php:8.0-apache-imagick
