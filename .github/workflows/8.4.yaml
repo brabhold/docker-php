@@ -54,3 +54,9 @@ jobs:
           file: Dockerfile.imagick
           push: true
           tags: brabholdsa/php:8.4-apache-imagick
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v4.0.2
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: brabholdsa/php
