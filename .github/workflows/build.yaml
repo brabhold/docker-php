@@ -17,10 +17,19 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and push
+        name: Build and push php 7.4
         uses: docker/build-push-action@v6
         with:
           build-args:
             PHP_VERSION=7.4
           push: true
           tags: brabholdsa/php:7.4
+      -
+        name: Build and push php 7.4-imagick
+        uses: docker/build-push-action@v6
+        with:
+          build-args:
+            PHP_BASE_IMAGE=brabholdsa/php:7.4
+            PHP_VERSION=7.4
+          push: true
+          tags: brabholdsa/php:7.4-imagick
