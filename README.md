@@ -1,6 +1,6 @@
 
-[![7.4](https://github.com/brabhold/docker-php/actions/workflows/build-7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/build-7.4.yaml)
-[![8.0](https://github.com/brabhold/docker-php/actions/workflows/build-8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/build-8.0.yaml)
+[![7.4](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml)
+[![8.0](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml)
 # Custom build of PHP for production.
 
 Docker repository `brabholdsa/php`
