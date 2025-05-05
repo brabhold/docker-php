@@ -1,13 +1,17 @@
+
+[![7.4](https://github.com/brabhold/docker-php/actions/workflows/build-7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/build-7.4.yaml)
+[![8.0](https://github.com/brabhold/docker-php/actions/workflows/build-8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/build-8.0.yaml)
 # Custom build of PHP for production.
 
 Docker repository `brabholdsa/php`
 
 See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 
-# !!! To build the images, please use the build.sh on Github project [docker-php-build](https://github.com/brabhold/docker-php-build)
+**!!! To build the images, please use the build.sh on Github project [docker-php-build](https://github.com/brabhold/docker-php-build)**
 
 # Supported tags
 
+- `8.4-apache`, `8.4-apache-imagick`, `8.4-cli`, `8.4-cli-imagick`
 - `8.3-apache`, `8.3-apache-imagick`, `8.3-cli`, `8.3-cli-imagick`
 - `8.2-apache`, `8.2-apache-imagick`, `8.2-cli`, `8.2-cli-imagick`
 - `8.1-apache`, `8.1-apache-imagick`, `8.1-cli`, `8.1-cli-imagick`
@@ -20,12 +24,6 @@ See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 
 # Additional environment variables
 
-`SERVER_NAME`
-
-Define server name for apache
-
-`SERVER_ALIAS`
-
-Define server alias for apache
-
-`WEB_DIR`
+- `SERVER_NAME`
+- `SERVER_ALIAS`
+- `WEB_DIR`
