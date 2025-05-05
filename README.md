@@ -1,4 +1,3 @@
-
 [![7.4](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/7.4.yaml)
 [![8.0](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.0.yaml)
 [![8.1](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml/badge.svg)](https://github.com/brabhold/docker-php/actions/workflows/8.1.yaml)
@@ -23,9 +22,27 @@ See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 - `8.0-apache`, `8.0-apache-imagick`, `8.0-cli`, `8.0-cli-imagick`
 - `7.4-apache`, `7.4-apache-imagick`, `7.4-cli`, `7.4-cli-imagick`
 
-##  Available but not maintained
+## Available but not maintained
 - `7.3-apache`, `7.3-cli`
 - `5.6-apache`, `5.6-cli`
+
+# Extention installation
+
+To install extension, don't forget to use php version for the package manager => `phpVERSION-EXTENSION`
+
+ex: 
+- php7.4-imagick
+- php8.1-xdebug
+- php8.4-soap
+- ...
+
+```docker
+RUN apt update && apt install --assume-yes --no-install-recommends \
+        php7.4-xdebug && \
+    apt clean && \
+    rm --recursive /var/lib/apt/lists/*
+```
+
 
 # Additional environment variables
 
