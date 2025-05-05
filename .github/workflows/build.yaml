@@ -31,5 +31,6 @@ jobs:
           build-args:
             PHP_BASE_IMAGE=brabholdsa/php:7.4
             PHP_VERSION=7.4
+          file: Dockerfile.imagick
           push: true
           tags: brabholdsa/php:7.4-imagick
