@@ -11,8 +11,6 @@ Docker repository `brabholdsa/php`
 
 See repository on [Docker Hub](https://hub.docker.com/r/brabholdsa/php)
 
-**!!! To build the images, please use the build.sh on Github project [docker-php-build](https://github.com/brabhold/docker-php-build)**
-
 # Supported tags
 
 - `8.4-apache`, `8.4-apache-imagick`, `8.4-cli`, `8.4-cli-imagick`
@@ -43,9 +41,12 @@ RUN apt update && apt install --assume-yes --no-install-recommends \
     rm --recursive /var/lib/apt/lists/*
 ```
 
-
 # Additional environment variables
 
 - `SERVER_NAME`
 - `SERVER_ALIAS`
 - `WEB_DIR`
+
+# Manually build images
+
+Please use the build.sh on Github project [docker-php-build](https://github.com/brabhold/docker-php-build)
