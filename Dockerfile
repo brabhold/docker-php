@@ -74,11 +74,15 @@ CMD ["php", "-a"]
 
 FROM cli AS apache
 
+ENV SERVER_NAME=localhost
+ENV SERVER_ALIAS=''
+ENV WEB_DIR=/var/www/html
+
 RUN apt update && \
     apt install --assume-yes apache2 php${PHP_VERSION} && \
     apt clean && \
     rm --recursive /var/lib/apt/lists/* && \
-    echo "ServerName localhost" > /etc/apache2/conf-available/fqdn.conf && \
+    echo "ServerName ${SERVER_NAME}" > /etc/apache2/conf-available/fqdn.conf && \
     a2enconf fqdn && \
     a2enmod rewrite && \
     chown --recursive www-data: /var/www/html && \
@@ -97,14 +101,11 @@ RUN apt update && \
     sed --in-place "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" $php_ini && \
     sed --in-place "s|;realpath_cache_size = 4096k|realpath_cache_size = 4096K|" $php_ini
 
-ENV SERVER_NAME=localhost
-ENV SERVER_ALIAS=''
-ENV WEB_DIR=/var/www/html
-
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-RUN usermod --uid 1000 www-data
-RUN groupmod --gid 1000 www-data
+RUN usermod --uid 1000 www-data && \
+    groupmod --gid 1000 www-data && \
+    chown www-data:www-data /var/www
 
 # https://httpd.apache.org/docs/2.4/stopping.html#gracefulstop
 STOPSIGNAL SIGWINCH
