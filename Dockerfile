@@ -21,6 +21,7 @@ RUN apt update && \
     apt clean && \
     rm --recursive /var/lib/apt/lists/*
 
+ENV XDG_CACHE_HOME=/tmp/fc-cache
 RUN apt update && \
     WKHTMLTOPDF_TEMP_DEB="$(mktemp).deb" && \
     curl --silent --show-error --location "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bookworm_amd64.deb" --output ${WKHTMLTOPDF_TEMP_DEB} && \
