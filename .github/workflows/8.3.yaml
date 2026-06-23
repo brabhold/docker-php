@@ -20,7 +20,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build and push brabholdsa/php:8.3-cli
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             PHP_VERSION=8.3
@@ -29,7 +29,7 @@ jobs:
           tags: brabholdsa/php:8.3-cli
 
       - name: Build and push brabholdsa/php:8.3-cli-imagick
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             PHP_BASE_IMAGE=brabholdsa/php:8.3-cli
@@ -39,7 +39,7 @@ jobs:
           tags: brabholdsa/php:8.3-cli-imagick
 
       - name: Build and push brabholdsa/php:8.3-apache
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args:
             PHP_VERSION=8.3
@@ -48,7 +48,7 @@ jobs:
           tags: brabholdsa/php:8.3-apache
 
       - name: Build and push brabholdsa/php:8.3-apache-imagick
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           build-args: |
             PHP_BASE_IMAGE=brabholdsa/php:8.3-apache
