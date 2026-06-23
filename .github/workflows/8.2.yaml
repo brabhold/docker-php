@@ -24,6 +24,7 @@ jobs:
         with:
           build-args: |
             PHP_VERSION=8.2
+            DEBIAN_SUITE=bookworm
           target: cli
           push: true
           tags: brabholdsa/php:8.2-cli
@@ -41,8 +42,9 @@ jobs:
       - name: Build and push brabholdsa/php:8.2-apache
         uses: docker/build-push-action@v7
         with:
-          build-args:
+          build-args: |
             PHP_VERSION=8.2
+            DEBIAN_SUITE=bookworm
           target: apache
           push: true
           tags: brabholdsa/php:8.2-apache

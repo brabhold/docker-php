@@ -1,4 +1,5 @@
-FROM amd64/debian:bookworm-slim AS debian
+ARG DEBIAN_SUITE=trixie
+FROM amd64/debian:${DEBIAN_SUITE}-slim AS debian
 
 LABEL maintainer="Yannick Vanhaeren"
 
@@ -43,7 +44,10 @@ WORKDIR /var/www/html
 FROM debian AS cli
 
 RUN apt update && \
-    apt install --assume-yes php${PHP_VERSION}-{apcu,bz2,cli,curl,gd,intl,ldap,mbstring,mysql,opcache,soap,solr,ssh2,readline,redis,xml,xsl,zip} && \
+    apt install --assume-yes php${PHP_VERSION}-{apcu,bz2,cli,curl,gd,intl,ldap,mbstring,mysql,soap,solr,ssh2,readline,redis,xml,xsl,zip} && \
+    if dpkg --compare-versions "${PHP_VERSION}" lt 8.5; then \
+        apt install --assume-yes php${PHP_VERSION}-opcache; \
+    fi && \
     apt clean && \
     rm --recursive /var/lib/apt/lists/*
 
@@ -69,7 +73,8 @@ RUN php_ini=${PHP_INI_DIR}/cli/php.ini && \
     echo "opcache.enable_cli=1" >> $ini_path/opcache.ini && \
     echo "opcache.validate_timestamps=0" >> $ini_path/opcache.ini && \
     echo "opcache.interned_strings_buffer=16" >> $ini_path/opcache.ini && \
-    echo "opcache.max_accelerated_files = 20000" >> $ini_path/opcache.ini
+    echo "opcache.max_accelerated_files = 20000" >> $ini_path/opcache.ini && \
+    phpenmod opcache
 
 CMD ["php", "-a"]
 
@@ -100,7 +105,8 @@ RUN apt update && \
     sed --in-place "s|;max_input_vars = 1000|max_input_vars = 3000|" $php_ini && \
     sed --in-place "s|;sendmail_path =|sendmail_path = /usr/bin/msmtp -t|" $php_ini && \
     sed --in-place "s|;realpath_cache_ttl = 120|realpath_cache_ttl = 600|" $php_ini && \
-    sed --in-place "s|;realpath_cache_size = 4096k|realpath_cache_size = 4096K|" $php_ini
+    sed --in-place "s|;realpath_cache_size = 4096k|realpath_cache_size = 4096K|" $php_ini && \
+    phpenmod opcache
 
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 

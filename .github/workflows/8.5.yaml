@@ -1,4 +1,4 @@
-name: "7.4"
+name: "8.5"
 
 on:
   push:
@@ -19,42 +19,40 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push brabholdsa/php:7.4-cli
+      - name: Build and push brabholdsa/php:8.5-cli
         uses: docker/build-push-action@v7
         with:
           build-args: |
-            PHP_VERSION=7.4
-            DEBIAN_SUITE=bookworm
+            PHP_VERSION=8.5
           target: cli
           push: true
-          tags: brabholdsa/php:7.4-cli
+          tags: brabholdsa/php:8.5-cli
 
-      - name: Build and push brabholdsa/php:7.4-cli-imagick
+      - name: Build and push brabholdsa/php:8.5-cli-imagick
         uses: docker/build-push-action@v7
         with:
           build-args: |
-            PHP_BASE_IMAGE=brabholdsa/php:7.4-cli
-            PHP_VERSION=7.4
+            PHP_BASE_IMAGE=brabholdsa/php:8.5-cli
+            PHP_VERSION=8.5
           file: Dockerfile.imagick
           push: true
-          tags: brabholdsa/php:7.4-cli-imagick
+          tags: brabholdsa/php:8.5-cli-imagick
 
-      - name: Build and push brabholdsa/php:7.4-apache
+      - name: Build and push brabholdsa/php:8.5-apache
         uses: docker/build-push-action@v7
         with:
           build-args: |
-            PHP_VERSION=7.4
-            DEBIAN_SUITE=bookworm
+            PHP_VERSION=8.5
           target: apache
           push: true
-          tags: brabholdsa/php:7.4-apache
+          tags: brabholdsa/php:8.5-apache
 
-      - name: Build and push brabholdsa/php:7.4-apache-imagick
+      - name: Build and push brabholdsa/php:8.5-apache-imagick
         uses: docker/build-push-action@v7
         with:
           build-args: |
-            PHP_BASE_IMAGE=brabholdsa/php:7.4-apache
-            PHP_VERSION=7.4
+            PHP_BASE_IMAGE=brabholdsa/php:8.5-apache
+            PHP_VERSION=8.5
           file: Dockerfile.imagick
           push: true
-          tags: brabholdsa/php:7.4-apache-imagick
+          tags: brabholdsa/php:8.5-apache-imagick
