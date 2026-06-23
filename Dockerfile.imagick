@@ -15,4 +15,6 @@ RUN apt update && apt install --assume-yes --no-install-recommends \
         php$PHP_VERSION-imagick && \
     apt clean && \
     rm --recursive /var/lib/apt/lists/* && \
-    sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
+    if [ -f /etc/ImageMagick-6/policy.xml ]; then \
+        sed --in-place '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml; \
+    fi
